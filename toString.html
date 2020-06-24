@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      const array1 = [1, 2, 'a', '1a'];
+      console.log(array1.toString());  // "1,2,a,1a"
+
+      const arr1 = [1, 2, 3, 4, 5, 6]
+      const result = arr1.toString()
+      console.log(result)   // '1,2,3,4,5,6'
+      console.log(typeof (result))   // string
+
+
+
+      var prices = ['￥7', 500, 8123, 12];
+      var result1 = prices.toLocaleString(
+         'ja-JP',
+         { style: 'currency', currency: 'JPY' }
+      );
+      console.log(result1) // "￥7,￥500,￥8,123,￥12"
+
+      var arr = ['a', 'b', 'c', 'd', 'e'];
+      var eArr = arr[Symbol.iterator]();
+      console.log(eArr) // Array Iterator {}
+      console.log(eArr.next(),'(eArr.next()')  //{value: "a", done: false}
+      for (let letter of eArr) {
+         console.log(letter); // b,c,d,e
+      }
+      var eArr1 = arr.values()
+      console.log(eArr1.next())  // {value: "a", done: false}
+      console.log(eArr1)   // Array Iterator {}
+      for (let letter of eArr1) {
+         console.log(letter); // a,b,c,d,e
+      }
+      var eArr2 = arr.entries()
+      console.log(eArr2)   // Array Iterator {}
+      console.log(eArr2.next())  // {value: value: (2) [0, "a"], done: false}
+      console.log(eArr2.next().value)  // [1, "b"]
+      console.log(eArr2.next().value)  // [2, "c"]
+      console.log(eArr2.next().value)  // [3, "d"]
+      console.log(eArr2.next().value)  // [4, "e"]
+      console.log(eArr2.next().value,eArr1.next().done)  // undefined true
+   </script>
+</body>
+
+</html>

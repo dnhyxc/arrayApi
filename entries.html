@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      var arr = ["a", "b", "c"];
+      var iter = arr.entries();
+      console.log(iter, 'iter')        // Array Iterator {} "iter"
+      var a = [];
+      for (var i = 0; i < arr.length + 1; i++) {   // 注意，是length+1，比数组的长度大
+         var tem = iter.next();                    // 每次迭代时更新next
+         console.log(tem, 'temValue')  // {value: Array(2), done: false} "temValue"
+         console.log(tem.done, 'done');             //这里可以看到更新后的done都是false
+         if (tem.done !== true) {                  // 遍历迭代器结束done才是true
+            console.log(tem.value, 'tem');
+            a[i] = tem.value;
+         }
+      }
+      console.log(a, 'a');
+      // [0:[0, "a"] 1:[1, "b"] 2:[2, "c"] length:3  __proto__: Array(0)
+
+      var value = a.map(item=>{
+         var vale = item.filter((val,index)=>{
+           return (val != 0 && val != 1 && val !=2)
+         })
+         console.log(vale,'vale')
+         return vale
+      })
+      console.log(value,'value')
+
+      var newA = a.values()
+      console.log(newA,'newA')
+      for(let aval of newA){
+         console.log(aval,'v')
+      }
+
+      var result = a.flat(1)
+      console.log(result,'result') //[0, "a", 1, "b", 2, "c"] "result"
+
+
+      var arrAalue=arr.values()
+      var arr2=[]
+      for(let ret in arrAalue){
+         arr2.push(ret)
+      }
+      console.log(arr2,'arr2')
+   </script> 
+</body>
+
+</html>

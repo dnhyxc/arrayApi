@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      var obj = {
+         length: 3,
+         0: 'a',
+         1: 'b',
+         2: 'c',
+         
+      }
+      console.log(obj)
+      var result = Array.from(obj)
+      result.map((item) => {
+         console.log(item)
+      })
+      console.log(result)
+         ;[].push.call(obj, 'd')
+      console.log([].slice.call(obj)) // ["a", "b", "c", "d"]
+         ;[].forEach.call(obj, function (num, index) {
+            console.log(num) // a b c d 
+         })
+
+      console.log(Array.from.length === 1) //true
+
+
+      var arr = ["a", "b", "c"];
+      var iter = arr.entries();
+      console.log(iter, 'iter')        // Array Iterator {} "iter"
+      var a = [];
+      for (var i = 0; i < arr.length + 1; i++) {   // 注意，是length+1，比数组的长度大
+         var tem = iter.next();                    // 每次迭代时更新next
+         console.log(tem, 'temValue')  // {value: Array(2), done: false} "temValue"
+         console.log(tem.done, 'done');             //这里可以看到更新后的done都是false
+         if (tem.done !== true) {                  // 遍历迭代器结束done才是true
+            console.log(tem.value, 'tem');
+            a[i] = tem.value;
+         }
+      }
+      console.log(a, 'a');
+      // [0:[0, "a"] 1:[1, "b"] 2:[2, "c"] length:3  __proto__: Array(0)
+
+      var arr2 = [1, 2, 3, 4, 5]
+      var result = arr2.copyWithin(-2)
+      console.log(result, 'arr2') //  [1, 2, 3, 1, 2] "arr2"
+      console.log(arr2, 'arr2原数组')
+
+
+      function isBigEnough(element, index, array) {
+         return element >= 10;
+      }
+      var arr3 = [12, 5, 8, 130, 44]
+      var result = arr3.every(isBigEnough);   // false
+      console.log(result,'arr3')
+
+   </script>
+</body>
+
+</html>

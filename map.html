@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      var kvArray = [
+         { key: 1, value: 10 },
+         { key: 2, value: 20 },
+         { key: 3, value: 30 }
+      ]
+      var reformattedArray = kvArray.map(function (obj) {
+         var rObj = {};
+         rObj[obj.key] = obj.value;
+         return rObj;
+      });
+      console.log(reformattedArray)
+      // reformattedArray 数组为： [{1: 10}, {2: 20}, {3: 30}],   
+      console.log(kvArray)
+      // kvArray 数组未被修改: 
+      // [{key: 1, value: 10}, {key: 2, value: 20}, {key: 3, value: 30}]
+
+      var numbers = [1, 2, 3, 4];
+      var filteredNumbers = numbers.map(function (num, index) {
+         if (index < 3) {
+            return num;
+         }
+      });
+      console.log(filteredNumbers)  // [1, 2, 3, undefined]
+
+
+      var elems = document.querySelectorAll('select option:checked');
+      var values = Array.prototype.map.call(elems, function (obj) {
+         return obj.value;
+      });
+      console.log(values)
+
+
+      var arr=['aaa','bbb','ccc']
+      var ul=document.createElement('ul')
+      arr.forEach(nav=>{
+         console.log(nav)
+         ul.innerHTML=nav
+      })
+      console.log(ul)
+
+
+   </script>
+</body>
+
+</html>

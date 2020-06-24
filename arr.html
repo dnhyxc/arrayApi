@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      * {
+         margin: 0%;
+         padding: 0%;
+      }
+
+      div {
+         width: 500px;
+         height: 300px;
+         background-color: beige;
+      }
+
+      ul {
+         height: 30px;
+         background-color: aquamarine;
+      }
+
+      li {
+         list-style: none;
+         float: left;
+         width: 60px;
+         background-color: chartreuse;
+         margin: 3px auto;
+         margin-left: 31px;
+         text-align: center;
+         border: 1px solid red;
+      }
+
+      .lis {
+         background-color: red;
+      }
+   </style>
+</head>
+
+<body>
+   <div>
+      <ul>
+         <li class="lis">11111</li>
+         <li id="22">22222</li>
+         <li id="33">33333</li>
+         <li id="44">44444</li>
+         <li id="55">55555</li>
+      </ul>
+   </div>
+
+   <script>
+      var lis = document.querySelectorAll('li')
+      function fun() {
+         for (let i = 0; i < lis.length; i++) {
+            lis[i].className = ''
+         }
+      }
+      for (let i = 0; i < lis.length; i++) {
+         console.log(i)
+         lis[i].onclick = function () {
+            fun()
+            console.log(lis)
+            this.className = 'lis'
+         }
+      }
+   </script>
+</body>
+
+</html>

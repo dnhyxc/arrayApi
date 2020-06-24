@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      var people = [
+         { name: 'Alice', age: 21 },
+         { name: 'Max', age: 20 },
+         { name: 'Jane', age: 20 }
+      ];
+
+      function groupBy(objectArray, property) {
+         return objectArray.reduce(function (acc, obj) {
+            var key = obj[property];
+            if (!acc[key]) {
+               acc[key] = [];
+            }
+            acc[key].push(obj);
+            return acc;
+         }, {});
+      }
+
+      var groupedPeople = groupBy(people, 'age');
+      console.log(groupedPeople,'groupedPeople')
+
+
+      var people1 = [
+         { name: 'Alice', age: 21 },{ name: 'Max', age: 20 },
+         { name: 'Jane', age: 20 }
+      ];
+      function groupBy1(objectArray, property) {
+         return objectArray.reduce(function (acc1, obj1) {
+            var key = obj1[property];
+               if(!acc1[key]){
+                  acc1[key]=obj1  // 会覆盖相同属性的值
+               }
+            return acc1;
+         }, {});
+      }
+      var groupedPeople1 = groupBy1(people1, 'age');
+      console.log(groupedPeople1,'groupedPeople1')
+      // 20: {name: "Jane", age: 20}  后面的值将前面的覆盖了
+      // 21: {name: "Alice", age: 21}
+
+   </script>
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      var arr = [1, 2, 3, 4, 5]
+      var result = arr.reduce((accumulator, currentValue, currentIndex, array) => {
+         return accumulator + currentValue;
+      }, 10);
+      console.log(result) // 25
+
+
+      var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+      var countedNames = names.reduce(function (allNames, name) {
+         if (name in allNames) {
+            console.log(allNames, 'allNames[name]')
+            allNames[name]++;
+         }
+         else {
+            allNames[name] = 1;
+         }
+         return allNames;
+      }, {});
+      // countedNames is:
+      // { 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 }
+
+
+
+
+      var maxCallback = (acc, cur) => Math.max(acc.x, cur.x);
+      var maxCallback2 = (max, cur) => Math.max(max, cur);
+      // reduce() 没有初始值
+      var result1 = [{ x: 22 }, { x: 42 }].reduce(maxCallback); // 42
+      var result2 = [{ x: 22 }].reduce(maxCallback); // { x: 22 }
+      // var result3 = [].reduce(maxCallback); // TypeError
+      // map/reduce; 这是更好的方案，即使传入空数组或更大数组也可正常执行
+      var result4 = [{ x: 22 }, { x: 42 }].map(el => el.x)
+         .reduce(maxCallback2, -Infinity);
+      console.log(result1, 'result1')   // 42 "result1"
+      console.log(result2, 'result2')   // {x: 22} "result2"
+      // console.log(result3,'result3')   // TypeError
+      console.log(result4, 'result4')   // 42 "result4"
+
+
+
+      var flattened = [[0, 1], [2, 3], [4, 5]].reduce(
+         (acc, cur) => acc.concat(cur),
+         []
+      );
+      console.log(flattened, 'flattened')  //[0, 1, 2, 3, 4, 5] "flattened"
+
+
+      var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice'];
+      var countedNames = names.reduce(function (allNames, name) {
+         if (name in allNames) {
+            allNames[name]++;
+         }
+         else {
+            allNames[name] = 1;
+         }
+         return allNames;
+      }, {});
+      console.log(countedNames, 'countedNames')
+      // {Alice: 2, Bob: 1, Tiff: 1, Bruce: 1} "countedNames"
+
+
+      var people = [
+         { name: 'Alice', age: 21 },
+         { name: 'Max', age: 20 },
+         { name: 'Jane', age: 20 }
+      ];
+      function groupBy1(objectArray, property) {
+         return objectArray.reduce(function (acc, obj) {
+            var key = obj[property];
+            if (!acc[key]) {
+               acc[key] = [];
+            }
+            acc[key].push(obj);
+            return acc;
+         }, {});
+      }
+      var groupedPeople = groupBy1(people, 'age');
+      console.log(groupedPeople, 'groupedPeople')
+      // { 
+      //   20: [{ name: 'Max', age: 20 }, { name: 'Jane', age: 20 }], 
+      //   21: [{ name: 'Alice', age: 21 }] 
+      // }
+
+
+
+      var friends = [{
+         name: 'Anna',
+         books: ['Bible', 'Harry Potter'],
+         age: 21
+      }, {
+         name: 'Bob',
+         books: ['War and peace', 'Romeo and Juliet'],
+         age: 26
+      }, {
+         name: 'Alice',
+         books: ['The Lord of the Rings', 'The Shining'],
+         age: 18
+      }];
+
+      var allbooks = friends.reduce(function (prev, curr) {
+         console.log(prev, 'prev') 
+         //如果只 return[...prev] 则永远返回["Alphabet"] "prev"
+         return [...prev, ...curr.books];
+      }, ['Alphabet']);
+      console.log(allbooks, 'allbooks')
+      // allbooks = [
+      //   'Alphabet', 'Bible', 'Harry Potter', 'War and peace', 
+      //   'Romeo and Juliet', 'The Lord of the Rings',
+      //   'The Shining'
+      // ]
+
+
+      var a1 = [1, 2, 3, 4, 5]
+      var a2 = [1, 2, 3, 4, 5, 6]
+      var a3 = [...a1, ...a2]
+      console.log(a3)
+
+
+      let arr6 = [1, 2, 1, 2, 3, 5, 4, 5, 3, 4, 4, 4, 4];
+      let result6 = arr6.sort().reduce((init, current) => {
+         if (init.length === 0 || init[init.length - 1] !== current) {
+            init.push(current);
+         }
+         return init;
+      }, []);
+      console.log(result6); //[1,2,3,4,5]
+
+
+
+
+
+      var people1 = [
+         { name: 'Alice', age: 21 },
+         { name: 'Max', age: 20 },
+         { name: 'Jane', age: 20 }
+      ];
+      function groupBy(objectArray, property) {
+         return objectArray.reduce(function (acc, obj) {
+            var key = obj[property];
+            if (!acc[key]) {
+               acc[key] = obj
+            }
+            return acc;
+         }, {});
+      }
+      var groupedPeople1 = groupBy(people1,'age');
+      console.log(groupedPeople1, 'groupedPeople1')
+
+
+      var user = [
+         {name:'aaa',header:'bbb',id:1},
+         {name:'ddd',header:'ccc',id:2}
+      ]
+      var users = user.reduce((users,user)=>{
+         if(!users[user.id]){
+            users[user.id]={name:user.name , header:user.header}
+            return users
+         }
+      },{})
+      console.log(users,'users')
+      //{1: {name: "aaa", header: "bbb"}}
+      //{2: {name: "ddd", header: "ccc"}}
+
+   </script>
+</body>
+
+</html>

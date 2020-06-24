@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      var arr1 = [1, 2, 3, 4];
+      console.log(arr1.map(x => [x * 2]))          // [[2], [4], [6], [8]]
+      console.log(arr1.flatMap(x => [x * 2]))      // [2, 4, 6, 8]
+      console.log(arr1.flatMap(x => [[x * 2]]))    // [[2], [4], [6], [8]]
+
+      let arr2 = ["it's Sunny in", "", "California"];
+      console.log(arr2.map(x => x.split(" ")));
+      // [["it's","Sunny","in"],[""],["California"]]
+      console.log(arr2.flatMap(x => x.split(" ")));
+      // ["it's","Sunny","in", "", "California"]
+
+
+   let a = [5, 4, -3, 20, 17, -33, -4, 18]
+   var result = a.flatMap((n) =>(n < 0) ? [] :(n % 2 == 0) ? [n] :[n - 1, 1])
+   console.log(result)   // [4, 1, 4, 20, 16, 1, 18]
+     
+
+   </script>
+</body>
+
+</html>

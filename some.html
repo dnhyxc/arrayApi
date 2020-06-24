@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      var fruits = ['apple', 'banana', 'mango', 'guava'];
+      function checkAvailability(arr, val) {
+         return arr.some(function (arrVal) {
+            return val === arrVal;
+         });
+      }
+      var result = checkAvailability(fruits, 'kela');
+      console.log(result)     // false
+      var result1 = checkAvailability(fruits, 'banana');
+      console.log(result1)    // true
+
+
+      var fruits = ['apple', 'banana', 'mango', 'guava'];
+      function checkAvailability(arr, val) {
+         return arr.some(arrVal => val === arrVal);
+      }
+      var result2 = checkAvailability(fruits, 'kela');
+      console.log(result2)    // false 
+      var result3 = checkAvailability(fruits, 'banana');
+      console.log(result3)    // true
+
+      var TRUTHY_VALUES = [true, 'true', 1];
+      function getBoolean(value) {
+         'use strict';
+         if (typeof value === 'string') {
+            value = value.toLowerCase().trim();
+         }
+         return TRUTHY_VALUES.some(function (t) {
+            return t === value;
+         });
+      }
+      console.log(getBoolean(false));     // false
+      console.log(getBoolean('false'));   // false
+      console.log(getBoolean(1));         // true
+      console.log(getBoolean('true'));    // true
+   </script>
+</body>
+
+</html>

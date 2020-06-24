@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      var result = Array.prototype.values === Array.prototype[Symbol.iterator]
+      console.log(result)  // true 
+
+
+      let arr = ['w', 'y', 'k', 'o', 'p'];
+      let eArr = arr.values();
+      for (let letter of eArr) { console.log(letter); } //"a" "b" "c" "d" 
+
+
+      var arr1 = ['a', 'b', 'c', 'd', 'e'];
+      var iterator = arr1.values();
+      console.log(iterator.next());               // Object { value: "a", done: false }
+      console.log(iterator.next().value);         // "b"
+      console.log(iterator.next()["value"]);      // "c"
+      console.log(iterator.next());               // Object { value: "d", done: false }
+      console.log(iterator.next());               // Object { value: "e", done: false }
+      console.log(iterator.next());               // Object { value: undefined, done: true } 
+      console.log(iterator.next().value);         // undefined
+
+
+      var arr2 = ['a', 'b', 'c', 'd', 'e'];
+      var iterator = arr2.values();
+      for (let letter of iterator) {
+         console.log(letter); //"a" "b" "c" "d" "e"
+      }
+      for (let letter of iterator) {
+         console.log(letter); // undefined
+      }
+
+
+      var arr3 = ['a', 'b', 'c', 'd', 'e'];
+      var iterator = arr3.values();
+      console.log(iterator); // Array Iterator {  }
+      console.log(iterator.next().value); //  "a"
+      arr3[1] = 'n';
+      console.log(iterator.next().value); //  "n"
+
+
+      let arr4 = ['w', 'y', 'k', 'o', 'p'];
+      let eArr1 = arr4.values();
+      console.log(eArr1)   // Array Iterator { }
+      for (let letter of eArr1) {
+         console.log(letter);  //'w', 'y', 'k', 'o', 'p'
+      }
+
+   </script>
+</body>
+
+</html>

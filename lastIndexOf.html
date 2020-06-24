@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <script>
+      var indices = [];
+      var array = ['a', 'b', 'a', 'c', 'a', 'd'];
+      var element = 'a';
+      var idx = array.lastIndexOf(element);
+      while (idx != -1) {
+         indices.push(idx);
+         idx = (idx > 0 ? array.lastIndexOf(element, idx - 1) : -1);
+      }
+      console.log(indices);   // [4, 2, 0];
+
+      var arr0 = ['zhm','age','sex']
+      var obj={}
+      arr0.forEach(item=>{
+         if(!obj[item]){
+            obj[item]=[]
+            obj[item].push(item)
+         }
+      })
+
+      console.log(obj,'obj')
+
+   </script>
+</body>
+
+</html>
